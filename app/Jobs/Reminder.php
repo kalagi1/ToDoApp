@@ -25,6 +25,7 @@ class Reminder implements ShouldQueue
         $this->_todoItem = ToDoItem::where('id',$todoItem)->first();
     }
 
+
     /**
      * Execute the job.
      *

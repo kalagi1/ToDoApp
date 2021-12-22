@@ -20,10 +20,6 @@ Route::apiResources([
     "to_do_item" => ToDoItemController::class,
 ]);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::post("/login",[AccountController::class,'login']);
 
 Route::post("/register",[AccountController::class,'register']);

@@ -4,6 +4,7 @@ namespace App\Functional\ToDoItem\Services;
 
 use App\Models\ToDoItem;
 use Carbon\Carbon;
+use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Facades\Validator;
 
 trait AddToDoItem{
@@ -42,7 +43,8 @@ trait AddToDoItem{
                 $datetime = new Carbon(request('end_date').'23:59:59');
             }
             $datetime = strtotime($datetime) - time() - 1800;
-            dispatch(new \App\Jobs\Reminder($ToDoItem->id))->delay($datetime);
+            $job = ( new \App\Jobs\Reminder($ToDoItem->id) )->onQueue('reminder_'.$ToDoItem->id)->delay($datetime);
+            dispatch($job);
         }
         
         

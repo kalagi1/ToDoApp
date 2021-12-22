@@ -23,6 +23,7 @@ class CreateToDoItemsTable extends Migration
             $table->unsignedBigInteger('priority_id')->nullable();
             $table->unsignedInteger('reminder')->nullable();
             $table->text('reminder_url')->nullable();
+            $table->unsignedBigInteger('reminder_job_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
